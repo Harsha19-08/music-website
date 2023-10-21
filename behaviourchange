@@ -1,0 +1,29 @@
+const themeIcon = document.querySelector('.toggle-label i');
+const body = document.body;
+
+let musicitem = document.getElementsByClassName('music-item');
+
+// console.log(musicitem);
+let isDarkMode = true;
+
+themeIcon.addEventListener('click', () => {
+    isDarkMode = !isDarkMode;
+    body.classList.toggle('dark-mode', isDarkMode);
+
+    for (let i = 0; i < musicitem.length; i++) {
+        musicitem[i].classList.toggle('music-item-dark-mode', isDarkMode);
+    }
+    themeIcon.classList.toggle('fa-sun', isDarkMode);
+    themeIcon.classList.toggle('fa-moon', !isDarkMode);
+
+    let pElements = document.getElementsByTagName('p');
+    for (let i = 0; i < pElements.length; i++) {
+        pElements[i].style.color = isDarkMode ? 'black' : 'white';
+    }
+
+    // Update color for elements with class 'favme dashicons dashicons-heart'
+    let favmeElements = document.querySelectorAll('.favme.dashicons.dashicons-heart');
+    for (let i = 0; i < favmeElements.length; i++) {
+        favmeElements[i].style.color = isDarkMode ? 'black' : 'white';
+    }
+});
